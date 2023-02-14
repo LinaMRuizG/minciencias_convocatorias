@@ -28,6 +28,14 @@ class mincienciasConvoc:
     self.links = [self.__web] + [self.__mainWeb + splitedHttp[0]+ 'page=' + str(i) for i in range(1, nlast)]
 
     return self.links
+
+  def get_table(self):
+
+    """it reads all the tables in each webpage from 1 to nPages and concatenates them"""
+
+    links = self.__get_links()
+    self.table = pd.concat([pd.read_html(i)[0] for i in links]).reset_index(drop=True)
+    return self.table
   
   
 
