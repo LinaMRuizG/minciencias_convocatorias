@@ -7,6 +7,7 @@ from email.message import EmailMessage
 import ssl # intern conectio secure - ass a layer of security
 import smtplib
 from email.mime.text import MIMEText
+import lxml
 
 class mincienciasConvoc:
 
@@ -36,6 +37,17 @@ class mincienciasConvoc:
     links = self.__get_links()
     self.table = pd.concat([pd.read_html(i)[0] for i in links]).reset_index(drop=True)
     return self.table
+  
+  # create hte get_all_table() method
+  
+  def save(self):
+
+    """it saves the table"""
+
+    print("sainving...")
+    #self.table.to_pickle(f"df_{date.today()}")
+
+
   
   
 
