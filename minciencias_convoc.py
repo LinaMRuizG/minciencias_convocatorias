@@ -44,8 +44,8 @@ class mincienciasConvoc:
 
     """it saves the table"""
 
-    print("sainving...")
-    #self.table.to_pickle(f"df_{date.today()}")
+    #print("sainving...")
+    self.table.to_pickle(f"df_{date.today()}")
 
 
   
