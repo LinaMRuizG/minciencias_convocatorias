@@ -12,12 +12,12 @@ It has a main module called `minciencias_convoc.py` which read the calls from [M
 1. Clone the repository
 2. Create the virtual enviroment (`virtualenv venv`)
 3. Activate the virtual environment (`source /path/to/venv/bin/activate`)
-3. Install the require libraries (`pip install -r requirements.txt`)
+3. Install the required libraries (`pip install -r requirements.txt`)
 4. Use the `exexution.py` to run the code and set the receiver mails and other attributes
 
 ## Contributing
 
-This project is in progress and it requires some improvments. Therefore, if you have a suggestion that would make this better, please fork the repo and create a pull request. You can also simply open an issue with the tag "enhancement". Don't forget to give the project a star! Thanks!
+This project is in progress and it requires some improvments. Therefore, if you have any suggestion that would make this better, please fork the repo and create a pull request. You can also simply open an issue with the tag "enhancement". Don't forget to give the project a star! Thanks!
 
 1. Fork the Project
 2. Create your Feature Branch (`git checkout -b feature/improvments`)
