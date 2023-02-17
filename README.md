@@ -1,11 +1,11 @@
-# keep up to date with the new reasearch calls from MINCIENCIAS
+# Keep up to date with the new reasearch calls from MINCIENCIAS
 
-The aim of this repository is to send an mail with the new calls for research projects from MINCIENCIAS Colombia. 
+The aim of this repository is to send an mail with the new calls for research projects from [MINCIENCIAS Colombia](https://minciencias.gov.co). 
 
 
 ## Description of files in this repository:
 
-It has a main module called `minciencias_convoc.py` which read the calls from `https://minciencias.gov.co/convocatorias/todas` each period of time. It sends a mail if there is new calls with respect to the last read. 
+It has a main module called `minciencias_convoc.py` which read the calls from [MINCIENCIAS webpage](https://minciencias.gov.co/convocatorias/todas) each period of time. It sends a mail if there is new calls with respect to the last read. 
 
 ## Contributing
 
@@ -19,10 +19,10 @@ This project is in progress and it requires some improvments. Therefore, if you 
 
 ## Contact
 
-*Lina M Ruiz G - lina.ruiz2@udea.edu.co
+* [Lina M Ruiz G](https://co.linkedin.com/in/lina-marcela-ruiz-galvis-465896209) - lina.ruiz2@udea.edu.co
 
 ## Acknowledgments
-* Anderson Alexis Ruales Barbosa 
+* [Anderson Alexis Ruales Barbosa](https://co.linkedin.com/in/anderson-alexis-ruales-b27638199?original_referer=https%3A%2F%2Fwww.google.com%2F)
 
     
     
