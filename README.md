@@ -7,13 +7,26 @@ The aim of this repository is to send an mail with the new calls for research pr
 
 It has a main module called `minciencias_convoc.py` which read the calls from [MINCIENCIAS webpage](https://minciencias.gov.co/convocatorias/todas) each period of time. It sends a mail if there is new calls with respect to the last read. 
 
-## Instaling
+## Installation
 
 1. Clone the repository
-2. Create the virtual enviroment (`virtualenv venv`)
-3. Activate the virtual environment (`source /path/to/venv/bin/activate`)
-3. Install the required libraries (`pip install -r requirements.txt`)
+   ```sh 
+   git clone https://github.com/LinaMRuizG/minciencias_convocatorias.git
+   ```
+2. Create the virtual enviroment 
+   ```sh 
+   virtualenv venv
+   ```
+3. Activate the virtual environment
+   ```sh 
+   source /path/to/venv/bin/activate
+   ```
+3. Install the required libraries 
+   ```sh 
+   pip install -r requirements.txt
+   ```
 4. Use the `exexution.py` to run the code and set the receiver mails and other attributes
+
 
 ## Contributing
 
