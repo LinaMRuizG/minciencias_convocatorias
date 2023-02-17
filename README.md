@@ -5,7 +5,7 @@ The aim of this repository is to send an mail with the new calls for research pr
 
 ## Description of files in this repository:
 
-It has a main module called ´minciencias_convoc´
+It has a main module called `minciencias_convoc`
 
 
 
