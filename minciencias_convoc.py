@@ -49,7 +49,7 @@ class mincienciasConvoc:
 
     """it saves the table"""
     
-    self.table.to_pickle(f"df_{date.today()}")
+    self.table.to_pickle(f"dataFrames/df_{date.today()}")
   
 
 
@@ -62,10 +62,10 @@ class mincienciasConvoc:
     other = pd.DataFrame()
 
     try:
-      other = pd.read_pickle(f"df_{date.today() - timedelta(days=last)}")
+      other = pd.read_pickle(f"dataFrames/df_{date.today() - timedelta(days=last)}")
     except:
       try:
-        other = pd.read_pickle(f"df_{date.today() - timedelta(days=last*2)}")
+        other = pd.read_pickle(f"dataFrames/df_{date.today() - timedelta(days=last*2)}")
       except:
         print(f"there are not files for the last 2 runs")
 
