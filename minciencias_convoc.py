@@ -1,5 +1,6 @@
 #importing some modules
 import requests
+import html5lib
 from bs4 import BeautifulSoup as bsp
 from datetime import date, timedelta
 import pandas as pd
@@ -11,14 +12,22 @@ import lxml
 from urllib3.exceptions import InsecureRequestWarning
 from urllib3 import disable_warnings
 
+#other setting
 disable_warnings(InsecureRequestWarning)
+
 
 class mincienciasConvoc:
 
-  def __init__(self, web, mainWeb, nPages = None):
+  def __init__(self, web, mainWeb, mailsList, frequency = None, nPages = None):
+    
     self.__web = web
     self.__mainWeb = mainWeb
+    self.mails = mailsList
+
     self.__n = nPages if nPages else 5 # the n_pages is optional and the default is 5
+    self.__f = frequency if frequency else 7 # the periodicity to run the code
+
+
     self.newones = pd.DataFrame()
   
   def __get_links(self, n=None):
@@ -43,7 +52,14 @@ class mincienciasConvoc:
     self.table = pd.concat([pd.read_html(i)[0] for i in links]).reset_index(drop=True)
     return self.table
   
-  # create hte get_all_table() method
+  
+  def get_allTable(self):
+
+    """it reads all the tables in each webpage from all pages and concatenates them"""
+
+    links = self.__get_links('all')
+    self.allTable = pd.concat([pd.read_html(i)[0] for i in links]).reset_index(drop=True)
+    return self.allTable
   
   def save(self):
 
@@ -52,13 +68,12 @@ class mincienciasConvoc:
     self.table.to_pickle(f"dataFrames/df_{date.today()}")
   
 
-
-  def comparing(self, frequency = None):
+  def comparing(self):
 
     """it review if there is previous files-df to compare with the actual df.
     Then review if there are differences between them: when differences gives a df if not 0 """
 
-    last = frequency if frequency else 7
+    last = self.__f
     other = pd.DataFrame()
 
     try:
@@ -73,23 +88,22 @@ class mincienciasConvoc:
       merging = self.table.merge(other, how = 'outer', indicator=True)
       self.newones = merging.loc[merging['_merge']=='left_only'].reset_index(drop = True)
       self.newones.drop('_merge', inplace = True, axis = 1)
-      #if self.newones.shape[0] != 0:
-      # return self.newones
-      #else:
-      # self.newones = 0
+     
 
-  def __emailing(self, mails = None):
+  def emailing(self):
 
     """it sends an mail if there is new 'convocatorias' 
     This function is ONLY use if  newones != 0. Thats the reason why it is 
     private method"""
 
     email_sender = 'fisicaminciencias@gmail.com'
-    email_password = 'wbauihzgjjviktqb'
-    email_receiver = ['lina.ruiz2@udea.edu.co','anderson.ruales@udea.edu.co']#,'josed.ruiz@udea.edu.co']
-
+    email_password = 'nloaavzcczqaijyd' 
+    email_receiver = self.mails
+    
     html = f""" <html><head></head><body>
-    <p>Estas son las nuevas convocatorias de MINCIENCIAS:<p>  
+    <p>
+    
+    Estas son las nuevas convocatorias de MINCIENCIAS:<p>  
     
     {self.newones.to_html()}
     
@@ -120,8 +134,7 @@ class mincienciasConvoc:
     self.get_table()
     self.save()
     self.comparing()
-    #print(self.newones.shape[0])
-    #print("No hay nuevas convocatorias") if self.newones.shape[0] == 0 else self.__emailing()
+    print("No hay nuevas convocatorias") if self.newones.shape[0] == 0 else self.emailing()
 
     
 

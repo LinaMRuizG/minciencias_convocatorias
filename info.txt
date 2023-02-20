@@ -1,0 +1,17 @@
+Some Possible issues:
+1. requests.exceptions.SSLError: HTTPSConnectionPool(host='minciencias.gov.co', port=443): Max retries exceeded with url: /convocatorias/todas (Caused by SSLError(SSLCertVerificationError(1, '[SSL: CERTIFICATE_VERIFY_FAILED] certificate verify failed: unable to get local issuer certificate (_ssl.c:997)'))
+2. OSError: [Errno 101] Network is unreachable
+3. ImportError: html5lib not found, please install it
+
+Key links for the code
+1. https://github.com/othneildrew/Best-README-Template 
+
+
+mail
+1. user: fisicaminciencias@gmail.com
+2. pasword: caleidoscopiO08
+
+Still missing
+1. guardar esta en otro documento como en el video
+2. sleep method and delete old files method
+3. delete oldest files
