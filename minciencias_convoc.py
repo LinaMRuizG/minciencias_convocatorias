@@ -183,11 +183,13 @@ class mincienciasConvoc:
     self.mostRecentTable()
     
     self.get_table()
-    self.save()
-    self.delete()
+
     
     self.comparing()
     print("No hay nuevas convocatorias") if self.newones.shape[0] == 0 else self.emailing()
+
+    self.save()
+    self.delete()
     
 
     
