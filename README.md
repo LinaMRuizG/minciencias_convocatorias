@@ -7,7 +7,10 @@ The aim of this repository is to send an mail with the new calls for research pr
 
 It has a main module called `minciencias_convoc.py` which read the calls from [MINCIENCIAS webpage](https://minciencias.gov.co/convocatorias/todas) each period of time. It sends a mail if there is new calls with respect to the last read. 
 
+
 ## Installation
+
+**NOTE:** *This project was made in* ***Python 3.10.6***
 
 1. Clone the repository
    ```sh 
