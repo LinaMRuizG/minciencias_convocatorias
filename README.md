@@ -30,6 +30,14 @@ It has a main module called `minciencias_convoc.py` which read the calls from [M
    ```
 4. Use the `exexution.py` to run the code and set the receiver mails and other attributes
 
+## Running
+
+You could use the next command to run  the code automatically from bash each period of time:
+
+   ```sh 
+   source execution.sh
+   ```
+
 
 ## Contributing
 
