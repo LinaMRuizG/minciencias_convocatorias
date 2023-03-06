@@ -11,6 +11,7 @@ from email.mime.text import MIMEText
 import lxml
 from urllib3.exceptions import InsecureRequestWarning
 from urllib3 import disable_warnings
+import os
 
 #other setting
 disable_warnings(InsecureRequestWarning)
@@ -29,6 +30,22 @@ class mincienciasConvoc:
 
 
     self.newones = pd.DataFrame()
+
+
+
+  def mostRecentTable(self):
+   
+    """This read all the df and identifies the most recent one """
+    
+    
+    try:
+      filesInFolder = sorted(os.listdir("dataFrames"))
+    except:
+      print("there are not files to compare")
+    else:
+      self.mostRecentTab = pd.read_pickle(f"dataFrames/{filesInFolder[-1]}")
+      return self.mostRecentTab
+
   
   def __get_links(self, n=None):
 
@@ -61,14 +78,46 @@ class mincienciasConvoc:
     self.allTable = pd.concat([pd.read_html(i)[0] for i in links]).reset_index(drop=True)
     return self.allTable
   
+
   def save(self):
 
     """it saves the table"""
     
     self.table.to_pickle(f"dataFrames/df_{date.today()}")
-  
 
+  
+  def delete(self):
+
+    """it delete the oldest tables"""
+    
+    try:
+      filesInFolder = sorted(os.listdir("dataFrames"))
+    except:
+      print("there are not files to delete")
+    else:
+      if len(filesInFolder) > 4 :
+        [os.remove(f"dataFrames/{i}") for i in sorted(filesInFolder)[:-4]]
+      
+
+ 
   def comparing(self):
+    
+    """it creates a new table if there is other table to compare """
+    
+    other = pd.DataFrame()
+    other = self.mostRecentTab
+
+    if len(other) != 0 :
+      merging = self.table.merge(other, how = 'outer', indicator=True)
+      self.newones = merging.loc[merging['_merge']=='left_only'].reset_index(drop = True)
+      self.newones.drop('_merge', inplace = True, axis = 1)
+    #else:
+    #  print("there is not table (mostRecentDF) to compare")
+
+
+
+  
+  def comparingOld(self):
 
     """it review if there is previous files-df to compare with the actual df.
     Then review if there are differences between them: when differences gives a df if not 0 """
@@ -131,10 +180,15 @@ class mincienciasConvoc:
     
     """it runs the methods"""
     
+    self.mostRecentTable()
+    
     self.get_table()
     self.save()
+    self.delete()
+    
     self.comparing()
     print("No hay nuevas convocatorias") if self.newones.shape[0] == 0 else self.emailing()
+    
 
     
 
