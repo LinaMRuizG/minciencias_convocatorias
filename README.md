@@ -12,11 +12,13 @@ It has a main module called `minciencias_convoc.py` which read the calls from [M
 
 **NOTE:** *This project was made in* ***Python 3.10.6***
 
-1. Clone the repository
+0. Create a folder to put the project and the virtual enviroment
+
+1. Clone the repository inside the folder
    ```sh 
    git clone https://github.com/LinaMRuizG/minciencias_convocatorias.git
    ```
-2. Create the virtual enviroment 
+2. Create the virtual enviroment inside the same folder 
    ```sh 
    virtualenv venv
    ```
