@@ -10,4 +10,7 @@ if __name__ == "__main__":
     
     conv = mc.mincienciasConvoc(web, main_web, mailsList)# you can also set: the frequency to run and the nPages
     conv.run() 
-    
+    #conv.delete()
+    #conv.get_table()
+    #conv.comparing()
+    #print(conv.newones)
