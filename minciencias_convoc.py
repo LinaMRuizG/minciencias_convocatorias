@@ -2,7 +2,7 @@
 import requests
 import html5lib
 from bs4 import BeautifulSoup as bsp
-from datetime import date, timedelta
+from datetime import date, timedelta, datetime
 import pandas as pd
 from email.message import EmailMessage
 import ssl # intern conectio secure - ass a layer of security
@@ -83,7 +83,7 @@ class mincienciasConvoc:
 
     """it saves the table"""
     
-    self.table.to_pickle(f"dataFrames/df_{date.today()}")
+    self.table.to_pickle(f"dataFrames/df_{datetime.now()}")
 
   
   def delete(self):
