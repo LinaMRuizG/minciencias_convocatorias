@@ -30,6 +30,7 @@ class mincienciasConvoc:
 
 
     self.newones = pd.DataFrame()
+    self.mostRecentTab=pd.DataFrame()
 
 
 
@@ -40,11 +41,14 @@ class mincienciasConvoc:
     
     try:
       filesInFolder = sorted(os.listdir("dataFrames"))
+      print(filesInFolder)
+      #self.mostRecentTab = pd.read_pickle(f"dataFrames/{filesInFolder[-1]}")
+      self.mostRecentTab = pd.read_csv(f"dataFrames/{filesInFolder[-1]}.csv")
+      return self.mostRecentTab
     except:
       print("there are not files to compare")
-    else:
-      self.mostRecentTab = pd.read_pickle(f"dataFrames/{filesInFolder[-1]}")
-      return self.mostRecentTab
+    #else:
+      
 
   
   def __get_links(self, n=None):
@@ -82,8 +86,8 @@ class mincienciasConvoc:
   def save(self):
 
     """it saves the table"""
-    
-    self.table.to_pickle(f"dataFrames/df_{datetime.now()}")
+    self.table.to_csv(f"dataFrames/df_{datetime.now().strftime('%Y_%m_%d_%H_%M_%S')}.csv", index=False)
+    #self.table.to_pickle(f"dataFrames/df_{datetime.now()}")
 
   
   def delete(self):
@@ -126,10 +130,12 @@ class mincienciasConvoc:
     other = pd.DataFrame()
 
     try:
-      other = pd.read_pickle(f"dataFrames/df_{date.today() - timedelta(days=last)}")
+      #other = pd.read_pickle(f"dataFrames/df_{date.today() - timedelta(days=last)}")
+      other = pd.read_csv(f"dataFrames/df_{date.today() - timedelta(days=last)}.csv", sep=';')
     except:
       try:
-        other = pd.read_pickle(f"dataFrames/df_{date.today() - timedelta(days=last*2)}")
+        #other = pd.read_pickle(f"dataFrames/df_{date.today() - timedelta(days=last*2)}")
+        other = pd.read_csv(f"dataFrames/df_{date.today() - timedelta(days=last*2)}.csv", sep=';')
       except:
         print(f"there are not files for the last 2 runs")
 
