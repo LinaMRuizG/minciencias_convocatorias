@@ -40,11 +40,11 @@ class mincienciasConvoc:
     
     
     try:
-      filesInFolder = sorted(os.listdir("dataFrames"))
+      filesInFolder = sorted(os.listdir("dataFrames"))[-1]
     except:
-      print("there are not files to compare")
+      print("there are not files in dataFrames/")
     else:
-      self.mostRecentTab = pd.read_pickle(f"dataFrames/{filesInFolder[-1]}")
+      self.mostRecentTab = pd.read_csv(f"dataFrames/{filesInFolder}")
       return self.mostRecentTab
 
   
@@ -62,7 +62,7 @@ class mincienciasConvoc:
 
     return self.links
 
-  def get_table(self):
+  def getTable(self):
 
     """it reads all the tables in each webpage from 1 to nPages and concatenates them"""
 
@@ -71,7 +71,7 @@ class mincienciasConvoc:
     return self.table
   
   
-  def get_allTable(self):
+  def getAllTable(self):
 
     """it reads all the tables in each webpage from all pages and concatenates them"""
 
@@ -84,36 +84,32 @@ class mincienciasConvoc:
 
     """it saves the table"""
     
-    self.table.to_pickle(f"dataFrames/df_{datetime.now()}")
+    self.table.to_csv(f"dataFrames/df_{datetime.now().strftime('%Y_%m_%d_%H_%M_%S')}.csv", index=False)
 
   
   def delete(self):
 
     """it delete the oldest tables"""
     
-    try:
-      filesInFolder = sorted(os.listdir("dataFrames"))
-    except:
-      print("there are not files to delete")
-    else:
-      if len(filesInFolder) > 4 :
+    filesInFolder = sorted(os.listdir("dataFrames"))
+    if len(filesInFolder) > 4 :
         [os.remove(f"dataFrames/{i}") for i in sorted(filesInFolder)[:-4]]
+    else:
+      print("there is not files to delete")
       
 
- 
   def comparing(self):
     
     """it creates a new table if there is other table to compare """
     
-    other = pd.DataFrame()
     other = self.mostRecentTab
 
     if len(other) != 0 :
       merging = self.table.merge(other, how = 'outer', indicator=True)
       self.newones = merging.loc[merging['_merge']=='left_only'].reset_index(drop = True)
       self.newones.drop('_merge', inplace = True, axis = 1)
-    #else:
-    #  print("there is not table (mostRecentDF) to compare")
+    else:
+      print("there is not table to compare")
 
 
   def emailing(self):
@@ -159,7 +155,7 @@ class mincienciasConvoc:
     
     self.mostRecentTable()
     
-    self.get_table()
+    self.getTable()
 
     
     self.comparing()
