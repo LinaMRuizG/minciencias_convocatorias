@@ -116,32 +116,6 @@ class mincienciasConvoc:
     #  print("there is not table (mostRecentDF) to compare")
 
 
-
-  
-  def comparingOld(self):
-
-    """it review if there is previous files-df to compare with the actual df.
-    Then review if there are differences between them: when differences gives a df if not 0 """
-
-    last = self.__f
-    other = pd.DataFrame()
-
-    try:
-      #other = pd.read_pickle(f"dataFrames/df_{date.today() - timedelta(days=last)}")
-      other = pd.read_csv(f"dataFrames/df_{date.today() - timedelta(days=last)}.csv", sep=';')
-    except:
-      try:
-        #other = pd.read_pickle(f"dataFrames/df_{date.today() - timedelta(days=last*2)}")
-        other = pd.read_csv(f"dataFrames/df_{date.today() - timedelta(days=last*2)}.csv", sep=';')
-      except:
-        print(f"there are not files for the last 2 runs")
-
-    if len(other) != 0 :
-      merging = self.table.merge(other, how = 'outer', indicator=True)
-      self.newones = merging.loc[merging['_merge']=='left_only'].reset_index(drop = True)
-      self.newones.drop('_merge', inplace = True, axis = 1)
-     
-
   def emailing(self):
 
     """it sends an mail if there is new 'convocatorias' 
