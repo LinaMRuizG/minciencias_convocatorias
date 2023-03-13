@@ -37,14 +37,10 @@ class mincienciasConvoc:
    
     """This read all the df and identifies the most recent one """
     
-    
-    try:
-      filesInFolder = sorted(os.listdir("dataFrames"))
-    except:
+    filesInFolder = sorted(os.listdir("dataFrames"))
+    self.mostRecentTab = pd.read_pickle(f"dataFrames/{filesInFolder[-1]}") if filesInFolder != [] else []
+    if filesInFolder == []:
       print("there are not files to compare")
-    else:
-      self.mostRecentTab = pd.read_pickle(f"dataFrames/{filesInFolder[-1]}")
-      return self.mostRecentTab
 
   
   def __get_links(self, n=None):
@@ -84,6 +80,7 @@ class mincienciasConvoc:
     """it saves the table"""
     
     self.table.to_pickle(f"dataFrames/df_{datetime.now()}")
+    self.table.to_csv(f"dataFrames/df_{datetime.now().strftime('%Y_%m_%d_%H_%M_%S')}.csv", index=False)
 
   
   def delete(self):
