@@ -30,6 +30,7 @@ class mincienciasConvoc:
 
 
     self.newones = pd.DataFrame()
+    self.mostRecentTab = pd.DataFrame()
 
 
 
@@ -37,14 +38,10 @@ class mincienciasConvoc:
    
     """This read all the df and identifies the most recent one """
     
-    
-    try:
-      filesInFolder = sorted(os.listdir("dataFrames"))
-    except:
+    filesInFolder = sorted(os.listdir("dataFrames"))
+    self.mostRecentTab = pd.read_pickle(f"dataFrames/{filesInFolder[-1]}") if filesInFolder != [] else []
+    if filesInFolder == []:
       print("there are not files to compare")
-    else:
-      self.mostRecentTab = pd.read_pickle(f"dataFrames/{filesInFolder[-1]}")
-      return self.mostRecentTab
 
   
   def __get_links(self, n=None):
@@ -114,30 +111,6 @@ class mincienciasConvoc:
     #else:
     #  print("there is not table (mostRecentDF) to compare")
 
-
-
-  
-  def comparingOld(self):
-
-    """it review if there is previous files-df to compare with the actual df.
-    Then review if there are differences between them: when differences gives a df if not 0 """
-
-    last = self.__f
-    other = pd.DataFrame()
-
-    try:
-      other = pd.read_pickle(f"dataFrames/df_{date.today() - timedelta(days=last)}")
-    except:
-      try:
-        other = pd.read_pickle(f"dataFrames/df_{date.today() - timedelta(days=last*2)}")
-      except:
-        print(f"there are not files for the last 2 runs")
-
-    if len(other) != 0 :
-      merging = self.table.merge(other, how = 'outer', indicator=True)
-      self.newones = merging.loc[merging['_merge']=='left_only'].reset_index(drop = True)
-      self.newones.drop('_merge', inplace = True, axis = 1)
-     
 
   def emailing(self):
 

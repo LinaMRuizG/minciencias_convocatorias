@@ -9,7 +9,8 @@ if __name__ == "__main__":
     mailsList = ['lina.ruiz2@udea.edu.co','anderson.ruales@udea.edu.co']
     
     conv = mc.mincienciasConvoc(web, main_web, mailsList)# you can also set: the frequency to run and the nPages
-    conv.run() 
+    #conv.run() 
+    conv.mostRecentTable()
     #conv.delete()
     #conv.get_table()
     #conv.comparing()
