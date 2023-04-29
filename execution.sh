@@ -1,6 +1,6 @@
 #!/bin/bash
 for (( ; ; ))
 do
-  python execution.py
+  python3 execution.py
   sleep 4m
 done

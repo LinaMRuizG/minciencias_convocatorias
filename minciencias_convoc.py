@@ -42,7 +42,7 @@ class mincienciasConvoc:
     try:
       filesInFolder = sorted(os.listdir("dataFrames"))[-1]
     except:
-      print("there are not files in dataFrames/")
+      pass
     else:
       self.mostRecentTab = pd.read_csv(f"dataFrames/{filesInFolder}")
       return self.mostRecentTab
@@ -95,7 +95,7 @@ class mincienciasConvoc:
     if len(filesInFolder) > 4 :
         [os.remove(f"dataFrames/{i}") for i in sorted(filesInFolder)[:-4]]
     else:
-      print("there is not files to delete")
+      pass#print("there is not files to delete")
       
 
   def comparing(self):
@@ -109,7 +109,7 @@ class mincienciasConvoc:
       self.newones = merging.loc[merging['_merge']=='left_only'].reset_index(drop = True)
       self.newones.drop('_merge', inplace = True, axis = 1)
     else:
-      print("there is not table to compare")
+      pass#print("there is not table to compare")
 
 
   def emailing(self):
@@ -159,7 +159,10 @@ class mincienciasConvoc:
 
     
     self.comparing()
-    print("No hay nuevas convocatorias") if self.newones.shape[0] == 0 else self.emailing()
+    if self.newones.shape[0] != 0:
+      self.emailing()
+    else:
+      pass
 
     self.save()
     self.delete()
