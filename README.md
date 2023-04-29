@@ -34,6 +34,11 @@ It has a main module called `minciencias_convoc.py` which read the calls from [M
 
 ## Running
 
+### running once 
+
+Use the `exexution.py` to run the code 
+
+### running once 
 You could use the next command to run  the code automatically from bash each period of time:
 
    ```sh 
