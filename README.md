@@ -40,7 +40,7 @@ Use the `exexution.py` to run the code
 
 ### Running multiple times automatically
 
-You could use the next command to run  the code automatically from bash each period of time:
+You can use the following command to run the code automatically from bash every certain period of time:
 
    ```sh 
    source execution.sh
