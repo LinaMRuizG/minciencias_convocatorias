@@ -2,5 +2,5 @@
 for (( ; ; ))
 do
   python3 execution.py
-  sleep 4m
+  sleep 50m
 done
