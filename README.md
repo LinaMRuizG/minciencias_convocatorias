@@ -34,47 +34,60 @@ It has a main module called `minciencias_convoc.py` which read the calls from [M
 
 ## Running
 
-### running once 
+### Running once 
 
 Use the `exexution.py` to run the code 
 
-### running once 
+### Running multiple times automatically
+
 You could use the next command to run  the code automatically from bash each period of time:
 
    ```sh 
    source execution.sh
    ```
 
-## Running in the server
+### Running in a server
 
---Crear screen
+1. Review the `screen` version 
 
-ver version de screen
+   ```sh 
+   screen --version
+   ```
 
+2. Create a screen 
+   
+   ```sh 
+   screen -S nameOfTheScreen
+   ```
 
-screen --version
+3. Run the file
 
--- Ver los screen
+   ```sh 
+   source execution.sh
+   ```
 
-screen -ls
-screen -list  
+4. Get out of the screen session
 
--- create sceen
+   ```sh 
+   Ctrl + a + d
+   ```
+5. List the screen in memory
 
-screen -S nombre-de-sesión
+```sh 
+   screen -ls
+```
 
+6. Get into the screen session 
 
--- Salir de la sesion
+```sh
+   screen -x nameOfTheScreen
+```
 
-Ctrl+a d
+7. Delete the screen
 
---delete screen actual
-
-screen -X -S 3644362.pts-91.clustercien  quit
-
--- ingresar a un screen
-
-screen -x name_screen
+```sh 
+   screen -X -S nameOfTheScreen quit
+```
 
 
 ## Contributing
