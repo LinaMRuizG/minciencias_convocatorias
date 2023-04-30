@@ -40,6 +40,37 @@ You could use the next command to run  the code automatically from bash each per
    source execution.sh
    ```
 
+## Running in the server
+
+--Crear screen
+
+ver version de screen
+
+
+screen --version
+
+-- Ver los screen
+
+screen -ls
+screen -list  
+
+-- create sceen
+
+screen -S nombre-de-sesión
+
+
+-- Salir de la sesion
+
+Ctrl+a d
+
+--delete screen actual
+
+screen -X -S 3644362.pts-91.clustercien  quit
+
+-- ingresar a un screen
+
+screen -x name_screen
+
 
 ## Contributing
 
